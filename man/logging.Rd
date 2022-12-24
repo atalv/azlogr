@@ -33,9 +33,9 @@ logger_debug(...)
 
 logger_fatal(...)
 
-logger_fatal(...)
+logger_success(...)
 
-logger_fatal(...)
+logger_trace(...)
 }
 \arguments{
 \item{...}{Content(s) of this argument is directly passed on to
@@ -160,31 +160,31 @@ logger_level(logger::INFO, "logging message", log_to_azure = FALSE)
 }
 
 \dontrun{
-logger_info("logging message info", .log_to_azure = FALSE)
+logger_info("logging message info", log_to_azure = FALSE)
 }
 
 \dontrun{
-logger_error("logging message error", .log_to_azure = FALSE)
+logger_error("logging message error", log_to_azure = FALSE)
 }
 
 \dontrun{
-logger_warn("logging message warn", .log_to_azure = FALSE)
+logger_warn("logging message warn", log_to_azure = FALSE)
 }
 
 \dontrun{
-logger_debug("logging message debug", .log_to_azure = FALSE)
+logger_debug("logging message debug", log_to_azure = FALSE)
 }
 
 \dontrun{
-logger_fatal("logging message fatal", .log_to_azure = FALSE)
+logger_fatal("logging message fatal", log_to_azure = FALSE)
 }
 
 \dontrun{
-logger_success("logging message success", .log_to_azure = FALSE)
+logger_success("logging message success", log_to_azure = FALSE)
 }
 
 \dontrun{
-logger_trace("logging message trace", .log_to_azure = FALSE)
+logger_trace("logging message trace", log_to_azure = FALSE)
 }
 
 }

@@ -5,3 +5,6 @@ packagecreate.R
 ^LICENSE\.md$
 ^README\.Rmd$
 ^cran-comments\.md$
+^docs$
+^codecov\.yml$
+^vignettes/articles$
