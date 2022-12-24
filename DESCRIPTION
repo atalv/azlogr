@@ -1,11 +1,27 @@
 Package: azlogr
-Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Title: Logging in R and post to Azure Log Analytics workspace
+Version: 0.0.0.9000
+Authors@R: 
+    person("Vivek", "Atal", , "atalvivek@yahoo.co.in", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-9948-7458"))
+Description: It extends the functionality of "logger" package. Additional
+    logging metadata can be configured to be collected. Logging messages are
+    displayed on console and optionally they are sent to Azure Log Analytics
+    workspace in real-time.
+License: MIT + file LICENSE
+Suggests: 
+    covr,
+    mockery,
+    pkgdown,
+    rmarkdown,
+    testthat (>= 3.1.0)
+Config/testthat/edition: 3
 Encoding: UTF-8
-LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+    caTools,
+    digest,
+    httr,
+    jsonlite,
+    logger

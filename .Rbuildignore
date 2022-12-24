@@ -1,2 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+packagecreate.R
+^azlogr\.Rproj$
+^LICENSE\.md$
+^README\.Rmd$
+^cran-comments\.md$
