@@ -299,7 +299,7 @@ logger_level <- function(
 #' @export
 #' @examples
 #' \dontrun{
-#' logger_info("logging message info", .log_to_azure = FALSE)
+#' logger_info("logging message info", log_to_azure = FALSE)
 #' }
 #'
 logger_info <- function(...) {
@@ -316,7 +316,7 @@ logger_info <- function(...) {
 #' @export
 #' @examples
 #' \dontrun{
-#' logger_error("logging message error", .log_to_azure = FALSE)
+#' logger_error("logging message error", log_to_azure = FALSE)
 #' }
 #'
 logger_error <- function(...) {
@@ -333,7 +333,7 @@ logger_error <- function(...) {
 #' @export
 #' @examples
 #' \dontrun{
-#' logger_warn("logging message warn", .log_to_azure = FALSE)
+#' logger_warn("logging message warn", log_to_azure = FALSE)
 #' }
 #'
 logger_warn <- function(...) {
@@ -350,7 +350,7 @@ logger_warn <- function(...) {
 #' @export
 #' @examples
 #' \dontrun{
-#' logger_debug("logging message debug", .log_to_azure = FALSE)
+#' logger_debug("logging message debug", log_to_azure = FALSE)
 #' }
 #'
 logger_debug <- function(...) {
@@ -367,7 +367,7 @@ logger_debug <- function(...) {
 #' @export
 #' @examples
 #' \dontrun{
-#' logger_fatal("logging message fatal", .log_to_azure = FALSE)
+#' logger_fatal("logging message fatal", log_to_azure = FALSE)
 #' }
 #'
 logger_fatal <- function(...) {
@@ -384,10 +384,10 @@ logger_fatal <- function(...) {
 #' @export
 #' @examples
 #' \dontrun{
-#' logger_success("logging message success", .log_to_azure = FALSE)
+#' logger_success("logging message success", log_to_azure = FALSE)
 #' }
 #'
-logger_fatal <- function(...) {
+logger_success <- function(...) {
   logger_level(logger::SUCCESS, ...)
 }
 
@@ -401,9 +401,9 @@ logger_fatal <- function(...) {
 #' @export
 #' @examples
 #' \dontrun{
-#' logger_trace("logging message trace", .log_to_azure = FALSE)
+#' logger_trace("logging message trace", log_to_azure = FALSE)
 #' }
 #'
-logger_fatal <- function(...) {
+logger_trace <- function(...) {
   logger_level(logger::TRACE, ...)
 }

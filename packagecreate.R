@@ -18,6 +18,10 @@ usethis::create_tidy_package("C:\\Users\\atal\\Documents\\rpak\\azlogr")
 
 # usethis::use_proprietary_license("")
 
+# citation("logger")
+
+# usethis::use_news_md()
+
 
 # Check package
 
@@ -50,8 +54,10 @@ covr::package_coverage()
 covr::package_coverage(line_exclusions = list("R/zzz.R"))
 # covr::package_coverage(function_exclusions = c(".onAttach"))
 # covr::report()
-?covr::azure
+# ?covr::azure
+usethis::use_coverage("codecov")
 
+# use_github_action("test-coverage")
 
 # HTML site having all documentation - in addition to package helper manuals
 
@@ -63,7 +69,8 @@ try(devtools::unload(), silent = TRUE)
 devtools::build_readme()
 # pkgdown::clean_site()
 # pkgdown::build_site()
-pkgdown::build_site(preview = FALSE, override = list(mode = "unreleased"))
+# pkgdown::build_site(preview = FALSE, override = list(mode = "unreleased"))
+pkgdown::build_site(preview = FALSE)
 # pkgdown::as_pkgdown()[["version"]]
 # pkgdown::build_articles(preview = FALSE)
 
@@ -108,7 +115,7 @@ usethis::use_package("jsonlite", type = "Imports", min_version = NULL)
 
 # Vignette article
 
-# usethis::use_article("01_setup", "How to use logger")
+# usethis::use_article("01_setup", "How to use azlogr")
 
 
 # ---------------------------------------------------------------------------------------------------------
