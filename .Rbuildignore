@@ -8,3 +8,4 @@ packagecreate.R
 ^docs$
 ^codecov\.yml$
 ^vignettes/articles$
+^_pkgdown\.yml$

@@ -350,6 +350,7 @@ logger_warn <- function(...) {
 #' @export
 #' @examples
 #' \dontrun{
+#' logger::log_threshold(logger::DEBUG)
 #' logger_debug("logging message debug", log_to_azure = FALSE)
 #' }
 #'
@@ -401,6 +402,7 @@ logger_success <- function(...) {
 #' @export
 #' @examples
 #' \dontrun{
+#' logger::log_threshold(logger::TRACE)
 #' logger_trace("logging message trace", log_to_azure = FALSE)
 #' }
 #'
