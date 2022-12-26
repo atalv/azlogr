@@ -10,7 +10,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![CRAN
 status](https://www.r-pkg.org/badges/version/azlogr)](https://CRAN.R-project.org/package=azlogr)
 [![Codecov test
-coverage](https://codecov.io/gh/atalv/azlogr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/atalv/azlogr?branch=main)
+coverage](https://codecov.io/gh/atalv/azlogr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/atalv/azlogr/tree/main)
 <!-- badges: end -->
 
 The goal of `azlogr` is to enable logging in R and easily send the
