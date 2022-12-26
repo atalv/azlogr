@@ -9,3 +9,4 @@ packagecreate.R
 ^codecov\.yml$
 ^vignettes/articles$
 ^_pkgdown\.yml$
+^\.github$
