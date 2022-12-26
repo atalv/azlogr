@@ -37,7 +37,7 @@ test_that("logging to console works", {
 })
 test_that("additional field works", {
   set_log_config(c("level", "msg", "country", "state"),
-                 list(country="in", state="hr"))
+                 list(country = "in", state = "hr"))
   expect_match(capture.output(logger_info("logging message info",
                                           log_to_azure = FALSE),
                               type = "message"),
@@ -59,7 +59,7 @@ test_that("enforce ascii works", {
 })
 test_that("additional meta vars error catching works", {
   set_log_config(c("level", "msg", "country", "state"),
-                 c(country="in"))
+                 c(country = "in"))
   expect_error(logger_info("logging message info",
                            log_to_azure = FALSE),
                "additional_fields argument is not of expected datatype")
@@ -69,12 +69,12 @@ test_that("additional meta vars error catching works", {
                            log_to_azure = FALSE),
                "It should be named list")
   set_log_config(c("level", "msg", "country", "state"),
-                 list(level=c("abc")))
+                 list(level = c("abc")))
   expect_error(logger_info("logging message info",
                            log_to_azure = FALSE),
                "cannot use any restricted names")
   set_log_config(c("level", "msg", "country", "state"),
-                 list(country=c("in", "ro")))
+                 list(country = c("in", "ro")))
   expect_error(logger_info("logging message info",
                            log_to_azure = FALSE),
                "It should not be multivalued")

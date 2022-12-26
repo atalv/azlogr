@@ -5,7 +5,7 @@ fs::dir_tree(recurse = 2, regexp="docs|packagecreate.R|metastore_db|*.Rproj*|*.R
 
 # Create backbone of package ------------------------------------------
 
-usethis::create_tidy_package("C:\\Users\\atal\\Documents\\rpak\\azlogr")
+# usethis::create_tidy_package("C:\\Users\\atal\\Documents\\rpak\\azlogr")
 
 # • `use_git()`
 # • `use_github()`
@@ -28,11 +28,23 @@ usethis::create_tidy_package("C:\\Users\\atal\\Documents\\rpak\\azlogr")
 # library(devtools)
 devtools::document()
 devtools::test()
-devtools::check()
+devtools::check(manual = TRUE)
 devtools::load_all()
 devtools::unload()
 # devtools::build()
+devtools::release()
 
+# R CMD build
+# R CMD check --as-cran
+
+# R manual to pdf
+# tinytex::install_tinytex()
+# Fix latex package dependency
+# tinytex::latexmk(file = "path-to-manual-tex-after-r-cmd-check")
+
+# Add Rstudio pandoc.exe, tinytex pdflatex, and Rscript location to PATH
+# rmarkdown::find_pandoc()
+# tinytex::tinytex_root()
 
 # create R code
 
@@ -63,6 +75,7 @@ usethis::use_coverage("codecov")
 
 # https://rdocs.netlify.app/articles/rdocs_article.html
 devtools::document()
+# devtools::build_manual()
 # usethis::use_pkgdown()
 # usethis::use_lifecycle_badge("experimental")
 try(devtools::unload(), silent = TRUE)
@@ -116,7 +129,7 @@ usethis::use_package("jsonlite", type = "Imports", min_version = NULL)
 # Vignette article
 
 # usethis::use_article("01_setup", "How to use azlogr")
-
+# usethis::use_vignette("how-to-use-azlogr", "How to use azlogr")
 
 # ---------------------------------------------------------------------------------------------------------
 # unloadNamespace("azlogr")
