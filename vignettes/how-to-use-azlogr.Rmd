@@ -1,5 +1,10 @@
 ---
 title: "How to use azlogr"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How to use azlogr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
@@ -75,4 +80,3 @@ logger::log_threshold(logger::INFO)
 # Info is logged when threshold is INFO
 logger_info("log information")
 ```
-

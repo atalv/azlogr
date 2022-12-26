@@ -7,13 +7,9 @@ reference:
 - contents:
   - ends_with("_config")
 - title: Logging functions
-  desc: Customized logging using Azure Log analytics
+  desc: Customized logging using Azure Log Analytics
 - contents:
   - starts_with("logger_")
-  - .post_data
-  - .build_signature
-  - .layout_json_custom
-  - .add_meta_variables
 - title: All functions
 - contents:
   - matches("*")
