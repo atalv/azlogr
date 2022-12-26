@@ -1,0 +1,19 @@
+template:
+  bootstrap: 5
+
+reference:
+- title: Config functions
+  desc:  Setting or getting configuration components
+- contents:
+  - ends_with("_config")
+- title: Logging functions
+  desc: Customized logging using Azure Log analytics
+- contents:
+  - starts_with("logger_")
+  - .post_data
+  - .build_signature
+  - .layout_json_custom
+  - .add_meta_variables
+- title: All functions
+- contents:
+  - matches("*")
