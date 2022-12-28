@@ -132,11 +132,11 @@ usethis::use_package("jsonlite", type = "Imports", min_version = NULL)
 # usethis::use_vignette("how-to-use-azlogr", "How to use azlogr")
 
 # CI actions?
-usethis::use_github_action("pkgdown")
-usethis::use_github_action("lint")
-usethis::use_github_action("render-rmarkdown")
-usethis::use_github_action("test-coverage")
-usethis::use_github_action("check-release")
+# usethis::use_github_action("pkgdown")
+# usethis::use_github_action("lint")
+# usethis::use_github_action("render-rmarkdown")
+# usethis::use_github_action("test-coverage")
+# usethis::use_github_action("check-release")
 
 # ---------------------------------------------------------------------------------------------------------
 # unloadNamespace("azlogr")
