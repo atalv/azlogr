@@ -44,7 +44,6 @@ set_log_config(
   log_fields = c("country", "id", "time", "level", "msg"),
   additional_fields = list(country = "in", id = 123)
 )
-
 ```
 
 3. By default, logging to Azure Log Analytics is enabled, that can be controlled via `log_to_azure` argument of `set_log_config` function. The custom logging table name in Azure Log Analytics workspace can be configured via `log_type` argument of the same `set_log_config` function. And finally, the workspace ID, shared key of Azure Log Analytics should be stored in some environment variable, by default which are `AZ_LOG_ID` & `AZ_LOG_KEY`. These can be changed by `customer_id_env` and `shared_key_env` arguments of the `set_log_config` function. An example configuration can be done in one-time step as below:
@@ -58,7 +57,7 @@ set_log_config(
 )
 ```
 
-All the configurations can be done by doing the one-time step using `set_log_config` function. And then logging can be done very easily by just using the wrapper functions defined for each log level.
+*All the configurations can be done by doing the one-time step* using `set_log_config` function. And then logging can be done very easily by just using the wrapper functions defined for each log level.
 ```{r logging}
 set_log_config(
   log_fields = c("country", "id", "time", "level", "msg"),
@@ -75,6 +74,7 @@ logger::log_threshold(logger::WARN)
 # Info is not logged when threshold is WARN
 logger_info("log information")
 logger_warn("log warning")
+
 # Change the threshold
 logger::log_threshold(logger::INFO)
 # Info is logged when threshold is INFO
