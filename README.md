@@ -18,12 +18,14 @@ logging messages to Azure Log Analytics workspace in real-time. It also
 shows the logging message on R console, which makes it easier to see the
 logs in the same pace where R codes are executed. It will be easier for
 somebody to retrieve the historical logs in Azure Log Analytics, if
-needed, and compare.  
-This is an extension of the
-[logger](https://daroczig.github.io/logger/index.html) package. You may
-set the logging threshold using
-[log_threshold](https://daroczig.github.io/logger/reference/log_threshold.html)
-function from `logger` package while initiating a session.  
+needed, and compare.
+
+This is an extension of the `logger` package, see this article:
+`vignette("Intro", package = "logger")` for an introduction about that
+package. You may set the logging threshold using
+`logger::log_threshold()` function from `logger` package while
+initiating a session.
+
 Moreover, there is an option provided to add additional custom meta-data
 while logging, which can be helpful at times.
 
@@ -33,8 +35,8 @@ You can install the development version of azlogr from
 [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-# devtools::install_github("atalv/azlogr")
+install.packages("devtools")
+devtools::install_github("atalv/azlogr")
 ```
 
 ## Example
@@ -46,5 +48,6 @@ library(azlogr)
 logger_info("logging info", log_to_azure = FALSE)
 ```
 
-Please refer the vignette article to know more on how to configure Azure
-Log Analytics workspace credentials and use this package.
+Please refer the vignette article `vignette("how-to-use-azlogr")` to
+know more on how to configure Azure Log Analytics workspace credentials
+and use this package.
