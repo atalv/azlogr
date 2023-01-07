@@ -110,7 +110,7 @@ configured in one step using <code>set_log_config</code> function of
 this package.</li>
 </ol>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/atalv/azlogr" class="external-link">azlogr</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://atalv.github.io/azlogr/" class="external-link">azlogr</a></span><span class="op">)</span></span>
 <span><span class="co"># Collect some additional meta-data on top of the default selection level, time, msg.</span></span>
 <span><span class="co"># These are captured from the auto-collected components by logger::get_logger_meta_variables.</span></span>
 <span><span class="fu"><a href="../reference/configuration.html">set_log_config</a></span><span class="op">(</span>log_fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"level"</span>, <span class="st">"time"</span>, <span class="st">"msg"</span>, <span class="st">"user"</span>, <span class="st">"pid"</span><span class="op">)</span><span class="op">)</span></span>
@@ -149,10 +149,10 @@ below:</li>
 <span>  customer_id_env <span class="op">=</span> <span class="st">"ENV_WORKSPACE_ID"</span>,</span>
 <span>  shared_key_env <span class="op">=</span> <span class="st">"ENV_SHARED_KEY"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>All the configurations can be done by doing the one-time step using
-<code>set_log_config</code> function. And then logging can be done very
-easily by just using the wrapper functions defined for each log
-level.</p>
+<p><em>All the configurations can be done by doing the one-time
+step</em> using <code>set_log_config</code> function. And then logging
+can be done very easily by just using the wrapper functions defined for
+each log level.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/configuration.html">set_log_config</a></span><span class="op">(</span></span>
 <span>  log_fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"country"</span>, <span class="st">"id"</span>, <span class="st">"time"</span>, <span class="st">"level"</span>, <span class="st">"msg"</span><span class="op">)</span>,</span>
@@ -168,6 +168,7 @@ using the <code><a href="https://daroczig.github.io/logger/reference/log_thresho
 <span><span class="co"># Info is not logged when threshold is WARN</span></span>
 <span><span class="fu"><a href="../reference/logging.html">logger_info</a></span><span class="op">(</span><span class="st">"log information"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/logging.html">logger_warn</a></span><span class="op">(</span><span class="st">"log warning"</span><span class="op">)</span></span>
+<span></span>
 <span><span class="co"># Change the threshold</span></span>
 <span><span class="fu">logger</span><span class="fu">::</span><span class="fu"><a href="https://daroczig.github.io/logger/reference/log_threshold.html" class="external-link">log_threshold</a></span><span class="op">(</span><span class="fu">logger</span><span class="fu">::</span><span class="va"><a href="https://daroczig.github.io/logger/reference/log_levels.html" class="external-link">INFO</a></span><span class="op">)</span></span>
 <span><span class="co"># Info is logged when threshold is INFO</span></span>
