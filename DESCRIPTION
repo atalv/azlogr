@@ -25,7 +25,7 @@ RoxygenNote: 7.2.3
 Imports: 
     caTools,
     digest,
-    httr,
+    httr (>= 1.0.0),
     jsonlite,
-    logger
+    logger (>= 0.2.0)
 VignetteBuilder: knitr

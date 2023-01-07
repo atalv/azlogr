@@ -121,8 +121,8 @@ usethis::use_package("mockery", type = "Suggests", min_version = NULL)
 
 usethis::use_package("digest", type = "Imports", min_version = NULL)
 usethis::use_package("caTools", type = "Imports", min_version = NULL)
-usethis::use_package("httr", type = "Imports", min_version = NULL)
-usethis::use_package("logger", type = "Imports", min_version = NULL)
+usethis::use_package("httr", type = "Imports", min_version = "1.0.0")
+usethis::use_package("logger", type = "Imports", min_version = "0.2.0")
 usethis::use_package("jsonlite", type = "Imports", min_version = NULL)
 
 

@@ -2,7 +2,7 @@
 #'
 #' Azure log analytics HTTP REST API documentation for Python is followed to
 #' create the R version of it. Python version of this function is described
-#' at \url{https://docs.microsoft.com/en-us/azure/azure-monitor/logs/data-collector-api#python-3-sample}
+#' at \url{https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-collector-api?tabs=python#sample-requests/}
 #'
 #' @param customer_id \code{customer_id} of the Azure log analytics workspace
 #' @param shared_key \code{shared_key} of the Azure log analytics workspace
