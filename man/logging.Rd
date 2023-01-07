@@ -71,7 +71,7 @@ Default is set by \code{log_to_azure} key of config yaml file.}
 
 \item{log_type}{Single element character vector is expected. Logs will be
 posted to this event on Azure log analytics. For details, check this:
-\url{https://docs.microsoft.com/en-us/azure/azure-monitor/logs/data-collector-api}
+\url{https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-collector-api?tabs=python/}
 . Default value is \code{"log_from_r"}.}
 
 \item{log_customer_id}{Workspace ID of Azure log analytics workspace. By

@@ -48,17 +48,17 @@ Default is set by \code{log_to_azure} key of config yaml file.}
 
 \item{log_type}{Single element character vector is expected. Logs will be
 posted to this event on Azure log analytics. For details, check this:
-\url{https://docs.microsoft.com/en-us/azure/azure-monitor/logs/data-collector-api}
+\url{https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-collector-api?tabs=python/}
 . Default value is \code{"log_from_r"}.}
 
 \item{customer_id_env}{The name of the environment variable which stores the
 workspace ID of the Azure log analytics workspace. Please refer
-\url{https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-collector-api?tabs=powershell#sample-requests}
+\url{https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-collector-api?tabs=powershell#sample-requests/}
 to see how you may get the required workspace ID.}
 
 \item{shared_key_env}{The name of the environment variable which stores the
 shared key of the Azure log analytics workspace. Please refer
-\url{https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-collector-api?tabs=powershell#sample-requests}
+\url{https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-collector-api?tabs=powershell#sample-requests/}
 to see how you may get the required shared key.}
 
 \item{key}{Specify the key whose value needs to be extracted.}
