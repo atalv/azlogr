@@ -27,13 +27,7 @@ jobs:
 
       - name: Lint
         run: |
-          lintr::lint_package(
-            linters = lintr::linters_with_defaults(
-              line_length_linter = lintr::line_length_linter(120),
-              cyclocomp_linter = lintr::cyclocomp_linter(15),
-              object_name_linter = lintr::object_name_linter(c('snake_case'))
-            )
-          )
+          lintr::lint_package()
         shell: Rscript {0}
         env:
           LINTR_ERROR_ON_LINT: true

@@ -1,3 +1,8 @@
+# azlogr 0.0.3
+
+* Added ability to extract all the configurations at once in `get_log_config` function.
+* Minor documentation update.
+
 # azlogr 0.0.2
 
 * Updated `README` and general package documentation.
