@@ -33,7 +33,14 @@ while logging, which can be helpful at times.
 
 ## Installation
 
-You can install the latest development version of `azlogr` from
+You can install the latest version of `azlogr` as published on
+[CRAN](https://cran.r-project.org/) with:
+
+``` r
+install.packages("azlogr")
+```
+
+Or, install the latest development version of `azlogr` from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -63,6 +70,7 @@ using `logger_*` functions to log.
 ``` r
 # Azure Log Analytics workspace id and shared key are fetched
 # from environment variables.
+# `Sys.setenv` is used only for demonstration purpose!!
 Sys.setenv(AZ_LOG_ID = "<enter-your-Azure-Log-Analytics-workspace-id>")
 Sys.setenv(AZ_LOG_KEY = "<enter-your-Azure-Log-Analytics-shared-key>")
 

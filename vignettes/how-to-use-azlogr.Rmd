@@ -103,6 +103,7 @@ Below is an example workflow of configuring the logging mechanism and using `log
 ```{r example, eval = FALSE}
 # Azure Log Analytics workspace id and shared key are fetched
 # from environment variables.
+# `Sys.setenv` is used only for demonstration purpose!!
 Sys.setenv(AZ_LOG_ID = "<enter-your-Azure-Log-Analytics-workspace-id>")
 Sys.setenv(AZ_LOG_KEY = "<enter-your-Azure-Log-Analytics-shared-key>")
 
