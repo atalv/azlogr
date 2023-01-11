@@ -32,7 +32,7 @@
     
     <a class="navbar-brand me-2" href="index.html">azlogr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -96,7 +96,43 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://atalv.github.io/azlogr/" class="external-link">azlogr</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/set_log_config.html">set_log_config</a></span><span class="op">(</span>log_to_azure <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/logging.html">logger_info</a></span><span class="op">(</span><span class="st">"logging info"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; {"level":"INFO","time":"2023-01-11 13:15:06","msg":"logging info"}</span></span></code></pre></div>
+<span><span class="co">#&gt; {"level":"INFO","time":"2023-01-11 13:15:03","msg":"logging info"}</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="workflow">Workflow<a class="anchor" aria-label="anchor" href="#workflow"></a>
+</h3>
+<p>And here is an example workflow of configuring the logging mechanism and using <code>logger_*</code> functions to log.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Azure Log Analytics workspace id and shared key are fetched</span></span>
+<span><span class="co"># from environment variables.</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>AZ_LOG_ID <span class="op">=</span> <span class="st">"&lt;enter-your-Azure-Log-Analytics-workspace-id&gt;"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>AZ_LOG_KEY <span class="op">=</span> <span class="st">"&lt;enter-your-Azure-Log-Analytics-shared-key&gt;"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://atalv.github.io/azlogr/" class="external-link">azlogr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Optionally, add additional meta-data, `country` and `id`, to be collected</span></span>
+<span><span class="co"># while logging, on top of the default fields - 'level', 'time', 'msg'.</span></span>
+<span><span class="fu"><a href="reference/set_log_config.html">set_log_config</a></span><span class="op">(</span></span>
+<span>  log_fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"level"</span>, <span class="st">"time"</span>, <span class="st">"msg"</span><span class="op">)</span>,</span>
+<span>  additional_fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"in"</span>, id <span class="op">=</span> <span class="fl">123</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Use logger_* functions with appropriate logging level to log.</span></span>
+<span><span class="co"># If POST is successful, then it will be available in custom log table on</span></span>
+<span><span class="co"># Azure Log Analytics, by default table name will be `log_from_r`_CL (_CL is</span></span>
+<span><span class="co"># added by Azure for any custom log table)</span></span>
+<span><span class="fu"><a href="reference/logging.html">logger_info</a></span><span class="op">(</span><span class="st">"log info sent to Azure"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; {"level":"INFO","time":"2023-01-11 13:15:04","msg":"log info sent to Azure","country":"in","id":123}</span></span>
+<span></span>
+<span><span class="co"># If the POST request is unsuccessful due to Azure credential issue, then log</span></span>
+<span><span class="co"># message is displayed on console and a warning is generated with error details.</span></span>
+<span><span class="fu"><a href="reference/logging.html">logger_info</a></span><span class="op">(</span><span class="st">"log info sent to Azure"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; {"level":"INFO","time":"2023-01-11 13:15:04","msg":"log info sent to Azure","country":"in","id":123}</span></span>
+<span><span class="co">#&gt; Warning message:</span></span>
+<span><span class="co">#&gt; In logger_level(logger::INFO, ...) :</span></span>
+<span><span class="co">#&gt;   Some error happened while sending POST request to 'Azure Log Analytics' workspace.</span></span>
+<span><span class="co">#&gt; Error message: Error in curl::curl_fetch_memory(url, handle = handle) :</span></span>
+<span><span class="co">#&gt;   Could not resolve host: abcd.ods.opinsights.azure.com</span></span></code></pre></div>
+</div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -137,7 +173,7 @@
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
 <li><a href="https://CRAN.R-project.org/package=azlogr" class="external-link"><img src="https://www.r-pkg.org/badges/version/azlogr" alt="CRAN status"></a></li>
 <li><a href="https://app.codecov.io/gh/atalv/azlogr?branch=main" class="external-link"><img src="https://codecov.io/gh/atalv/azlogr/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
-<li><a href="https://github.com/atalv/azlogr/actions/workflows/check-release.yaml" class="external-link"><img src="https://github.com/atalv/azlogr/actions/workflows/check-release.yaml/badge.svg?branch=main" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/atalv/azlogr/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/atalv/azlogr/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 </ul>
 </div>
 
