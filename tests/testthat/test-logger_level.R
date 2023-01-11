@@ -3,7 +3,7 @@ test_that("if incorrect authorization generate warning", {
   mockery::stub(logger_level, "httr::content", "testmock")
   expect_warning(logger_level(logger::INFO, "logging message info",
                               log_to_azure = TRUE),
-                 "Could not post to Azure log analytics")
+                 "Could not post to 'Azure Log Analytics'")
 })
 test_that("posting to AZ log analytics works", {
   mockery::stub(logger_level, ".post_data", list(status_code = 200))

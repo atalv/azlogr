@@ -2,7 +2,7 @@
 % Please edit documentation in R/logger_level.R
 \name{.build_signature}
 \alias{.build_signature}
-\title{Build API signature for logging to Azure log analytics}
+\title{Build API signature for logging to 'Azure Log Analytics'}
 \usage{
 .build_signature(
   customer_id,
@@ -15,11 +15,11 @@
 )
 }
 \arguments{
-\item{customer_id}{\code{customer_id} of the Azure log analytics workspace}
+\item{customer_id}{\code{customer_id} of the 'Azure Log Analytics' workspace}
 
-\item{shared_key}{\code{shared_key} of the Azure log analytics workspace}
+\item{shared_key}{\code{shared_key} of the 'Azure Log Analytics' workspace}
 
-\item{date}{datetime of logging event}
+\item{date}{date-time of logging event}
 
 \item{content_length}{Content length of the body}
 
@@ -30,11 +30,11 @@
 \item{resource}{Only one value is expected - \code{/api/logs}}
 }
 \value{
-Returns part of the header of HTTP POST request to be sent to Azure
-log analytics workspace
+Returns part of the header of HTTP POST request to be sent to 'Azure
+Log Analytics' workspace
 }
 \description{
-Azure log analytics HTTP REST API documentation for Python is followed to
-create the R version of it. Python version of this function is described
+'Azure Log Analytics' HTTP REST API documentation for 'Python' is followed to
+create the 'R' version of it. 'Python' version of this function is described
 at \url{https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-collector-api?tabs=python#sample-requests/}
 }

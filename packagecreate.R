@@ -32,6 +32,7 @@ devtools::check(manual = TRUE)
 devtools::load_all()
 devtools::unload()
 # devtools::build()
+devtools::spell_check()
 devtools::release()
 
 # R CMD build

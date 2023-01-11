@@ -1,18 +1,18 @@
-#' Build API signature for logging to Azure log analytics
+#' Build API signature for logging to 'Azure Log Analytics'
 #'
-#' Azure log analytics HTTP REST API documentation for Python is followed to
-#' create the R version of it. Python version of this function is described
+#' 'Azure Log Analytics' HTTP REST API documentation for 'Python' is followed to
+#' create the 'R' version of it. 'Python' version of this function is described
 #' at \url{https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-collector-api?tabs=python#sample-requests/}
 #'
-#' @param customer_id \code{customer_id} of the Azure log analytics workspace
-#' @param shared_key \code{shared_key} of the Azure log analytics workspace
-#' @param date datetime of logging event
+#' @param customer_id \code{customer_id} of the 'Azure Log Analytics' workspace
+#' @param shared_key \code{shared_key} of the 'Azure Log Analytics' workspace
+#' @param date date-time of logging event
 #' @param content_length Content length of the body
 #' @param method Only one value is expected - \code{POST}
 #' @param content_type Only one value is expected - \code{application/json}
 #' @param resource Only one value is expected - \code{/api/logs}
-#' @return Returns part of the header of HTTP POST request to be sent to Azure
-#'     log analytics workspace
+#' @return Returns part of the header of HTTP POST request to be sent to 'Azure
+#'     Log Analytics' workspace
 .build_signature <- function(customer_id, shared_key, date, content_length,
                              method, content_type, resource) {
   x_headers <- paste0("x-ms-date:", date)
@@ -29,14 +29,15 @@
 }
 
 
-#' Build and send a request to the POST API of Azure log analytics
+#' Build and send a request to the POST API of 'Azure Log Analytics'
 #'
 #' @inherit .build_signature details
 #'
-#' @param customer_id \code{customer_id} of the Azure log analytics workspace
-#' @param shared_key \code{shared_key} of the Azure log analytics workspace
-#' @param body Content or message to be logged in json format
-#' @param log_type Log-Type as defined in Azure document, for custom logging
+#' @param customer_id \code{customer_id} of the 'Azure Log Analytics' workspace
+#' @param shared_key \code{shared_key} of the 'Azure Log Analytics' workspace
+#' @param body Content or message to be logged in JSON format
+#' @param log_type Log-Type as defined in 'Azure Log Analytics' document, for
+#'     custom logging
 #' @return Returns the HTTP response object
 .post_data <- function(customer_id, shared_key, body, log_type) {
   method <- "POST"
@@ -69,11 +70,8 @@
 #' @inheritParams logger::get_logger_meta_variables
 #'
 #' @return Returns a vector of collected meta-data. It is used in defining the
-#'     logger layout function.
+#'     \code{\link[logger]{log_layout}} function.
 #'
-#' @examples \dontrun{
-#'   .add_meta_variables(list(country="in", id=12))
-#' }
 .add_meta_variables <- function(additional_fields = NULL,
                                log_level = NULL,
                                namespace = NA_character_,
@@ -128,11 +126,11 @@
 }
 
 
-#' Customized logger layout
+#' Customized logging layout
 #'
 #' This is an extended function of \code{\link[logger]{layout_json}} function
-#' from \code{logger} package. Objective is to add additional component in the
-#' layout of logger in JSON format so that they can also be reported while
+#' from \code{'logger'} package. Objective is to add additional component in the
+#' logging layout in JSON format so that they can also be reported while
 #' logging along with the components collected by
 #' \code{\link{.add_meta_variables}}.
 #'
@@ -144,11 +142,6 @@
 #' @return Returns a generator function typically to be used by
 #'     \code{\link[logger]{log_layout}} function.
 #'
-#' @examples \dontrun{
-#'   logger::log_layout(.layout_json_custom(
-#'   c("level", "time", "msg", "country"),
-#'   list(country = "in")))
-#' }
 .layout_json_custom <- function(log_fields = c("time", "level", "ns", "ans",
                                                "topenv", "fn", "node", "arch",
                                                "os_name", "os_release",
@@ -195,44 +188,46 @@
 #'
 #' Logger function defined which are created on top of
 #' \code{\link[logger]{log_level}} and \code{\link[logger]{layout_json}} -
-#' these are part of another package \code{logger}. Additional
+#' these are part of another package \code{'logger'}. Additional
 #' capabilities have been added to those functions which enables this function
-#' to be able to send logs directly to the Azure log analytics workspace, and
+#' to be able to send logs directly to the 'Azure Log Analytics' workspace, and
 #' also have control to post log outputs into the console - as per user input.
 #' Note that, logging threshold can be directly set (if needed) using
-#' \code{\link[logger]{log_threshold}} function from \code{logger} package.
+#' \code{\link[logger]{log_threshold}} function from \code{'logger'} package.
 #'
 #' @param ... Content(s) of this argument is directly passed on to
-#'     \code{\link[logger]{log_level}} function of the \code{logger}
+#'     \code{\link[logger]{log_level}} function of the \code{'logger'}
 #'     package.
 #' @inheritParams set_log_config
-#' @param log_customer_id Workspace ID of Azure log analytics workspace. By
+#' @param log_customer_id Workspace ID of 'Azure Log Analytics' workspace. By
 #'     default it fetches from the environment variable named \code{AZ_LOG_ID}.
 #'     If the environment variable is not set, then a dummy value \code{"abcd"}
 #'     is used. The environment variable's name can be modified by
 #'     \code{\link{set_log_config}}
-#' @param log_shared_key Shared key of Azure log analytics workspace. By default
-#'     it fetches from the environment variable named \code{AZ_LOG_KEY}. If the
-#'     environment variable is not set, then a dummy value \code{"abcd"} is
-#'     used. The environment variable's name can be modified by
+#' @param log_shared_key Shared key of 'Azure Log Analytics' workspace. By
+#'     default it fetches from the environment variable named \code{AZ_LOG_KEY}.
+#'     If the environment variable is not set, then a dummy value \code{"abcd"}
+#'     is used. The environment variable's name can be modified by
 #'     \code{\link{set_log_config}}
 #'
 #' @return If \code{log_to_azure} is \code{FALSE} then log output is shown on
 #'     console. Else, if \code{TRUE}, then log output is shown on console, as
-#'     well as posted to Azure log analytics workspace under the custom table
+#'     well as posted to 'Azure Log Analytics' workspace under the custom table
 #'     name as specified by \code{log_type} argument. If POST request is
 #'     unsuccessful, then additional warning message is thrown with POST request
-#'     response.
-#' @note Logging layout is set in JSON format, required to send to AZ log
-#'     analytics. Note that this layout modifies the global \code{namespace} of
-#'     logger package by default - that is not important for this use case.
+#'     response. If POST request is successful, then it invisibly returns the
+#'     \code{\link[httr]{POST}} object.
+#' @note Logging layout is set in JSON format, required to send to 'Azure Log
+#'     Analytics'. Note that this layout modifies the global \code{namespace} of
+#'     \code{'logger'} package by default - that is not important for this use
+#'     case.
 #' @details \itemize{
 #'     \item Most of the arguments of this function have a default value which
 #'      is read from the output of \code{\link{get_log_config}}. The idea is
 #'      to run the \code{\link{set_log_config}} function once to define the
 #'      default arguments; and use them automatically while logging anything
 #'      without the need of specifying them every time it is triggered.
-#'     \item Azure log analytics workspace id and shared key are intentionally
+#'     \item 'Azure Log Analytics' workspace id and shared key are intentionally
 #'      fetched from environment variables for security purpose. It is not
 #'      a good practice to specify them explicitly. Using environment variable
 #'      is one easy approach to potentially hide it from unintentional user.
@@ -245,13 +240,11 @@
 #' @aliases logger_level logger_info logger_error logger_warn logger_fatal
 #'     logger_success logger_debug logger_trace
 #' @examples
-#' \dontrun{
-#' # Define logging config and then use logger
+#' # Define logging config and then use logger_* functions to log
 #' set_log_config(log_to_azure = FALSE)
 #' logger_level(logger::INFO, "logging message")
-#' # Specify arguments explicitly inside the logger
+#' # Specify other arguments explicitly inside the logger_level function
 #' logger_level(logger::INFO, "logging message", log_to_azure = FALSE)
-#' }
 #'
 logger_level <- function(
     ...,
@@ -276,12 +269,12 @@ logger_level <- function(
                                body, log_type), silent = TRUE)
     if (inherits(response, "try-error")) {
       warning(paste0("Some error happened while sending POST request ",
-                     "to Azure log analytics workspace. Error message: ",
+                     "to 'Azure Log Analytics' workspace. Error message: ",
                      as.character(response)))
     } else if (response$status_code >= 200 && response$status_code <= 299) {
       invisible(response)
     } else {
-      warning(paste0("Could not post to Azure log analytics, status code: ",
+      warning(paste0("Could not post to 'Azure Log Analytics', status code: ",
                      response$status_code, ".", "\n",
                      "Response received: ",
                      httr::content(response, as = "text")))
@@ -298,9 +291,15 @@ logger_level <- function(
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' # For ease, use wrapper functions instead of using `logger_level` function as
+#' # below
 #' logger_info("logging message info", log_to_azure = FALSE)
-#' }
+#'
+#' # Also, instead of writing `log_to_azure = FALSE` every time, set the
+#' # configuration in one step using `set_log_config`, and continue to use
+#' # wrapper functions as usual.
+#' set_log_config(log_to_azure = FALSE)
+#' logger_info("logging message info")
 #'
 logger_info <- function(...) {
   logger_level(logger::INFO, ...)
@@ -315,9 +314,8 @@ logger_info <- function(...) {
 #'
 #' @export
 #' @examples
-#' \dontrun{
-#' logger_error("logging message error", log_to_azure = FALSE)
-#' }
+#' # Wrapper function for log level 'error'
+#' logger_error("logging message error")
 #'
 logger_error <- function(...) {
   logger_level(logger::ERROR, ...)
@@ -332,9 +330,8 @@ logger_error <- function(...) {
 #'
 #' @export
 #' @examples
-#' \dontrun{
-#' logger_warn("logging message warn", log_to_azure = FALSE)
-#' }
+#' # Wrapper function for log level 'warn'
+#' logger_warn("logging message warn")
 #'
 logger_warn <- function(...) {
   logger_level(logger::WARN, ...)
@@ -349,10 +346,10 @@ logger_warn <- function(...) {
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' # Change log threshold to debug
 #' logger::log_threshold(logger::DEBUG)
-#' logger_debug("logging message debug", log_to_azure = FALSE)
-#' }
+#' # Wrapper function for log level 'debug'
+#' logger_debug("logging message debug")
 #'
 logger_debug <- function(...) {
   logger_level(logger::DEBUG, ...)
@@ -367,9 +364,8 @@ logger_debug <- function(...) {
 #'
 #' @export
 #' @examples
-#' \dontrun{
-#' logger_fatal("logging message fatal", log_to_azure = FALSE)
-#' }
+#' # Wrapper function for log level 'fatal'
+#' logger_fatal("logging message fatal")
 #'
 logger_fatal <- function(...) {
   logger_level(logger::FATAL, ...)
@@ -384,9 +380,8 @@ logger_fatal <- function(...) {
 #'
 #' @export
 #' @examples
-#' \dontrun{
-#' logger_success("logging message success", log_to_azure = FALSE)
-#' }
+#' # Wrapper function for log level 'success'
+#' logger_success("logging message success")
 #'
 logger_success <- function(...) {
   logger_level(logger::SUCCESS, ...)
@@ -401,10 +396,10 @@ logger_success <- function(...) {
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' # Change logging threshold
 #' logger::log_threshold(logger::TRACE)
-#' logger_trace("logging message trace", log_to_azure = FALSE)
-#' }
+#' # Wrapper function for log level 'trace'
+#' logger_trace("logging message trace")
 #'
 logger_trace <- function(...) {
   logger_level(logger::TRACE, ...)

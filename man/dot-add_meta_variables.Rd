@@ -17,7 +17,7 @@
 \item{additional_fields}{A named vector of type list with key-value pairs of
 additional meta data which needs to be added in logging context on top of
 \code{log_fields}. The respective value of each key is expected to be of
-length 1.}
+length 1. It is \code{NULL} by default.}
 
 \item{log_level}{log level as per \code{\link[logger]{log_levels}}}
 
@@ -31,16 +31,11 @@ length 1.}
 }
 \value{
 Returns a vector of collected meta-data. It is used in defining the
-logger layout function.
+\code{\link[logger]{log_layout}} function.
 }
 \description{
 Add additional meta variables in the logging context on top of the ones
 that are readily collected in \code{\link[logger]{get_logger_meta_variables}}
 function. It might be needed to add some other metadata specific to the
 logging usage - that goal is served by this function.
-}
-\examples{
-\dontrun{
-  .add_meta_variables(list(country="in", id=12))
-}
 }
