@@ -52,7 +52,7 @@ credentials and use this package easily.
 library(azlogr)
 set_log_config(log_to_azure = FALSE)
 logger_info("logging info")
-#> {"level":"INFO","time":"2023-01-11 13:15:06","msg":"logging info"}
+#> {"level":"INFO","time":"2023-01-11 13:15:03","msg":"logging info"}
 ```
 
 ### Workflow
