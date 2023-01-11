@@ -138,7 +138,6 @@ usethis::use_package("jsonlite", type = "Imports", min_version = NULL)
 # usethis::use_github_action("render-rmarkdown")
 # usethis::use_github_action("test-coverage")
 # usethis::use_github_action("check-release")
-# usethis::use_github_action_check_standard()
 
 # ---------------------------------------------------------------------------------------------------------
 # unloadNamespace("azlogr")
