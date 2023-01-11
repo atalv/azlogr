@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">azlogr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,10 +84,10 @@
 package seamlessly:</p>
 <ol style="list-style-type: decimal">
 <li>
-<p>Configure environment variables to fetch the Azure Log Analytics
-workspace ID &amp; shared key.</p>
+<p>Configure environment variables to fetch the ‘Azure Log
+Analytics’ workspace ID &amp; shared key.</p>
 <ol style="list-style-type: lower-alpha">
-<li>Ideally, this needs to be done outside R. But, you may create a
+<li>Ideally, this needs to be done outside ‘R’. But, you may create a
 <code>.Rprofile</code> file in your project root, and define the
 environment variable using <code>Sys.setenv</code> function. Example
 contents of the <code>.Rprofile</code> can be as below. Please note,
@@ -98,11 +98,11 @@ environment.</li>
 </li>
 </ol>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>AZ_LOG_ID <span class="op">=</span> <span class="st">"enter-your-Azure-log-analytics-workspace-id"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>AZ_LOG_KEY <span class="op">=</span> <span class="st">"enter-your-Azure-log-analytics-shared-key"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>AZ_LOG_ID <span class="op">=</span> <span class="st">"enter-your-Azure-Log-Analytics-workspace-id"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>AZ_LOG_KEY <span class="op">=</span> <span class="st">"enter-your-Azure-Log-Analytics-shared-key"</span><span class="op">)</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Identify any meta-data which needs to be collected and logged. There
-are some pre-defined information which are collected by the function
+are some predefined information which are collected by the function
 <code><a href="https://daroczig.github.io/logger/reference/get_logger_meta_variables.html" class="external-link">logger::get_logger_meta_variables</a></code>, which are reused in this
 package. However, by default not all are used while logging. You may
 also add some other meta-data as per the requirement, which can be be
@@ -113,22 +113,22 @@ this package.</li>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://atalv.github.io/azlogr/" class="external-link">azlogr</a></span><span class="op">)</span></span>
 <span><span class="co"># Collect some additional meta-data on top of the default selection level, time, msg.</span></span>
 <span><span class="co"># These are captured from the auto-collected components by logger::get_logger_meta_variables.</span></span>
-<span><span class="fu"><a href="../reference/configuration.html">set_log_config</a></span><span class="op">(</span>log_fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"level"</span>, <span class="st">"time"</span>, <span class="st">"msg"</span>, <span class="st">"user"</span>, <span class="st">"pid"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/set_log_config.html">set_log_config</a></span><span class="op">(</span>log_fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"level"</span>, <span class="st">"time"</span>, <span class="st">"msg"</span>, <span class="st">"user"</span>, <span class="st">"pid"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Some additional meta-data to be collected.</span></span>
-<span><span class="fu"><a href="../reference/configuration.html">set_log_config</a></span><span class="op">(</span></span>
+<span><span class="fu"><a href="../reference/set_log_config.html">set_log_config</a></span><span class="op">(</span></span>
 <span>  log_fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"level"</span>, <span class="st">"time"</span>, <span class="st">"msg"</span><span class="op">)</span>,</span>
 <span>  additional_fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"in"</span>, id <span class="op">=</span> <span class="fl">123</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Change the ordering in which the log message is displayed on console.</span></span>
 <span><span class="co"># Newly added meta-data can also be added in the log_fields arguments to change display order.</span></span>
-<span><span class="fu"><a href="../reference/configuration.html">set_log_config</a></span><span class="op">(</span></span>
+<span><span class="fu"><a href="../reference/set_log_config.html">set_log_config</a></span><span class="op">(</span></span>
 <span>  log_fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"country"</span>, <span class="st">"id"</span>, <span class="st">"time"</span>, <span class="st">"level"</span>, <span class="st">"msg"</span><span class="op">)</span>,</span>
 <span>  additional_fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"in"</span>, id <span class="op">=</span> <span class="fl">123</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
-<li>By default, logging to Azure Log Analytics is enabled, that can be
+<li>By default, logging to ‘Azure Log Analytics’ is enabled, that can be
 controlled via <code>log_to_azure</code> argument of
 <code>set_log_config</code> function. The custom logging table name in
 Azure Log Analytics workspace can be configured via
@@ -142,7 +142,7 @@ function. An example configuration can be done in one-time step as
 below:</li>
 </ol>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/configuration.html">set_log_config</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_log_config.html">set_log_config</a></span><span class="op">(</span></span>
 <span>  log_fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"country"</span>, <span class="st">"id"</span>, <span class="st">"time"</span>, <span class="st">"level"</span>, <span class="st">"msg"</span><span class="op">)</span>,</span>
 <span>  additional_fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"in"</span>, id <span class="op">=</span> <span class="fl">123</span><span class="op">)</span>,</span>
 <span>  log_type <span class="op">=</span> <span class="st">"custom_table_r"</span>,</span>
@@ -154,14 +154,22 @@ step</em> using <code>set_log_config</code> function. And then logging
 can be done very easily by just using the wrapper functions defined for
 each log level.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/configuration.html">set_log_config</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="co"># Add new meta-data as `country = "in"` and `id = 123`.</span></span>
+<span><span class="co"># Defining the fields to be reported should be: `country`, `id`, `time`,</span></span>
+<span><span class="co"># `level`, and `msg`. Note that, you may change the order of these fields if</span></span>
+<span><span class="co"># needed.</span></span>
+<span><span class="fu"><a href="../reference/set_log_config.html">set_log_config</a></span><span class="op">(</span></span>
 <span>  log_fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"country"</span>, <span class="st">"id"</span>, <span class="st">"time"</span>, <span class="st">"level"</span>, <span class="st">"msg"</span><span class="op">)</span>,</span>
 <span>  additional_fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"in"</span>, id <span class="op">=</span> <span class="fl">123</span><span class="op">)</span>,</span>
 <span>  log_to_azure <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Once the configuration is done, it is easy to just provide the required</span></span>
+<span><span class="co"># message using appropriate wrapper functions: logger_info, logger_warn,</span></span>
+<span><span class="co"># logger_error, etc.</span></span>
 <span><span class="fu"><a href="../reference/logging.html">logger_info</a></span><span class="op">(</span><span class="st">"log information"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/logging.html">logger_warn</a></span><span class="op">(</span><span class="st">"log warning"</span><span class="op">)</span></span></code></pre></div>
-<p>Finally, the logging threshold can be defined to limit the output
+<p>Lastly, the logging threshold can be defined to limit the output
 using the <code><a href="https://daroczig.github.io/logger/reference/log_threshold.html" class="external-link">logger::log_threshold</a></code> function.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">logger</span><span class="fu">::</span><span class="fu"><a href="https://daroczig.github.io/logger/reference/log_threshold.html" class="external-link">log_threshold</a></span><span class="op">(</span><span class="fu">logger</span><span class="fu">::</span><span class="va"><a href="https://daroczig.github.io/logger/reference/log_levels.html" class="external-link">WARN</a></span><span class="op">)</span></span>
@@ -171,7 +179,7 @@ using the <code><a href="https://daroczig.github.io/logger/reference/log_thresho
 <span></span>
 <span><span class="co"># Change the threshold</span></span>
 <span><span class="fu">logger</span><span class="fu">::</span><span class="fu"><a href="https://daroczig.github.io/logger/reference/log_threshold.html" class="external-link">log_threshold</a></span><span class="op">(</span><span class="fu">logger</span><span class="fu">::</span><span class="va"><a href="https://daroczig.github.io/logger/reference/log_levels.html" class="external-link">INFO</a></span><span class="op">)</span></span>
-<span><span class="co"># Info is logged when threshold is INFO</span></span>
+<span><span class="co"># Info is logged now when threshold is INFO</span></span>
 <span><span class="fu"><a href="../reference/logging.html">logger_info</a></span><span class="op">(</span><span class="st">"log information"</span><span class="op">)</span></span></code></pre></div>
   </main>
 </div>
