@@ -30,9 +30,15 @@ Moreover, there is an option provided to add additional custom meta-data while l
 
 ## Installation
 
-You can install the latest development version of `azlogr` from [GitHub](https://github.com/) with:
+You can install the latest version of `azlogr` as published on [CRAN](https://cran.r-project.org/) with:
 
-```{r install, eval = FALSE}
+```{r install_cran, eval = FALSE}
+install.packages("azlogr")
+```
+
+Or, install the latest development version of `azlogr` from [GitHub](https://github.com/) with:
+
+```{r install_dev, eval = FALSE}
 install.packages("devtools")
 devtools::install_github("atalv/azlogr")
 ```
@@ -55,6 +61,7 @@ And here is an example workflow of configuring the logging mechanism and using `
 ```{r example, eval = FALSE}
 # Azure Log Analytics workspace id and shared key are fetched
 # from environment variables.
+# `Sys.setenv` is used only for demonstration purpose!!
 Sys.setenv(AZ_LOG_ID = "<enter-your-Azure-Log-Analytics-workspace-id>")
 Sys.setenv(AZ_LOG_KEY = "<enter-your-Azure-Log-Analytics-shared-key>")
 
