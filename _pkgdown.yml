@@ -5,9 +5,10 @@ reference:
 - title: Config functions
   desc:  Setting or getting configuration components
 - contents:
-  - ends_with("_config")
+  - set_log_config
+  - get_log_config
 - title: Logging functions
-  desc: Customized logging using Azure Log Analytics
+  desc: Customized logging using 'Azure Log Analytics'
 - contents:
   - starts_with("logger_")
 - title: All functions

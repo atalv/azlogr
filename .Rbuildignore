@@ -10,3 +10,4 @@ packagecreate.R
 ^vignettes/articles$
 ^_pkgdown\.yml$
 ^\.github$
+^\.lintr$

@@ -2,7 +2,6 @@
 % Please edit documentation in R/set_log_config.R
 \name{set_log_config}
 \alias{set_log_config}
-\alias{get_log_config}
 \title{Set logging configuration}
 \usage{
 set_log_config(
@@ -15,8 +14,6 @@ set_log_config(
   customer_id_env = "AZ_LOG_ID",
   shared_key_env = "AZ_LOG_KEY"
 )
-
-get_log_config(key = NULL)
 }
 \arguments{
 \item{log_fields}{Character vector of field names to be included in the JSON.
@@ -27,74 +24,55 @@ to that function's documentation to see which fields are collected.}
 \item{additional_fields}{A named vector of type list with key-value pairs of
 additional meta data which needs to be added in logging context on top of
 \code{log_fields}. The respective value of each key is expected to be of
-length 1.}
+length 1. It is \code{NULL} by default.}
 
-\item{enforce_ascii_msg}{If \code{TRUE}, the logging message is guaranteed to
-have all non-ASCII characters escaped. If \code{FALSE}, the characters
-will be logged as-is. Please note, it is better to ensure ASCII,
-otherwise there might be error while sending the HTTP POST request to
-Azure log analytics workspace.}
+\item{enforce_ascii_msg}{If \code{TRUE} (default), the logging message is
+guaranteed to have all non-ASCII characters escaped. If \code{FALSE}, the
+characters will be logged as-is. Please note, it is better to ensure
+ASCII, otherwise there might be error while sending the HTTP POST request
+to 'Azure Log Analytics' workspace.}
 
-\item{enforce_tz_utc}{If \code{TRUE}, the logging time field is converted to
-UTC timezone while sending the logging dump to Azure log analytics
-workspace. If \code{FALSE}, then the local time captured by
-\code{Sys.time} is recorded in the time field.}
+\item{enforce_tz_utc}{If \code{TRUE} (default), the logging time field is
+converted to UTC timezone while sending the logging dump to 'Azure Log
+Analytics' workspace. If \code{FALSE}, then the local time captured by
+\code{\link[base]{Sys.time}} is recorded in the time field.}
 
-\item{log_to_azure}{If \code{TRUE} then logs will be sent to Azure log
-analytics workspace and console. Else if \code{FALSE} then log will not
-be sent to Azure log analytics workspace, it will only be displayed on
-console, which is the default layout of \code{logger} package.
-Default is set by \code{log_to_azure} key of config yaml file.}
+\item{log_to_azure}{If \code{TRUE} (default), then logs will be sent to
+'Azure Log Analytics' workspace and console. Else if \code{FALSE} then
+logs will not be sent to 'Azure Log Analytics' workspace, it will only be
+displayed on console, which is the default layout of \code{'logger'}
+package.}
 
 \item{log_type}{Single element character vector is expected. Logs will be
-posted to this event on Azure log analytics. For details, check this:
+posted to this event on 'Azure Log Analytics'. For details, check this:
 \url{https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-collector-api?tabs=python/}
 . Default value is \code{"log_from_r"}.}
 
-\item{customer_id_env}{The name of the environment variable which stores the
-workspace ID of the Azure log analytics workspace. Please refer
+\item{customer_id_env}{The name of the environment variable (default is
+\code{AZ_LOG_ID}) which stores the workspace ID of the 'Azure Log
+Analytics' workspace. Please refer
 \url{https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-collector-api?tabs=powershell#sample-requests/}
 to see how you may get the required workspace ID.}
 
-\item{shared_key_env}{The name of the environment variable which stores the
-shared key of the Azure log analytics workspace. Please refer
+\item{shared_key_env}{The name of the environment variable (default is
+\code{AZ_LOG_KEY}) which stores the shared key of the 'Azure Log
+Analytics' workspace. Please refer
 \url{https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-collector-api?tabs=powershell#sample-requests/}
 to see how you may get the required shared key.}
-
-\item{key}{Specify the key whose value needs to be extracted.}
 }
 \value{
 It saves the configuration in an environment enclosed within this
 package. Returns nothing explicitly.
-
-Returns the respective config value of the given key.
 }
 \description{
 Set the logging configuration once by executing this function. There won't be
 any need to set them every time while logging something via
 \code{\link{logger_level}} or any wrapper of that, e.g.
 \code{\link{logger_info}} function(s).
-
-Get the config value of a specific key which was set (or not set) using
-\code{\link{set_log_config}} function. If nothing was set, then it reuses the
-default value defined in the function signature of
-\code{\link{set_log_config}} function.
 }
 \examples{
-{
   set_log_config(log_fields = c("level", "time", "msg", "user", "pid"))
   set_log_config(enforce_tz_utc = FALSE, log_to_azure = FALSE)
-}
-{
-  # Get config value without setting anything
-  get_log_config("log_to_azure")
-  # Set some config first and then get the respective values
-  set_log_config(enforce_tz_utc = FALSE, log_to_azure = FALSE)
-  get_log_config("enforce_tz_utc")
-  get_log_config("log_to_azure")
-  # Reset the values
-  set_log_config()
-  get_log_config("log_to_azure")
-}
+
 }
 \concept{Logging configurations}

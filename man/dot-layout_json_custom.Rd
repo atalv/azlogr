@@ -2,7 +2,7 @@
 % Please edit documentation in R/logger_level.R
 \name{.layout_json_custom}
 \alias{.layout_json_custom}
-\title{Customized logger layout}
+\title{Customized logging layout}
 \usage{
 .layout_json_custom(
   log_fields = c("time", "level", "ns", "ans", "topenv", "fn", "node", "arch", "os_name",
@@ -20,18 +20,18 @@
 \item{additional_fields}{A named vector of type list with key-value pairs of
 additional meta data which needs to be added in logging context on top of
 \code{log_fields}. The respective value of each key is expected to be of
-length 1.}
+length 1. It is \code{NULL} by default.}
 
-\item{enforce_ascii_msg}{If \code{TRUE}, the logging message is guaranteed to
-have all non-ASCII characters escaped. If \code{FALSE}, the characters
-will be logged as-is. Please note, it is better to ensure ASCII,
-otherwise there might be error while sending the HTTP POST request to
-Azure log analytics workspace.}
+\item{enforce_ascii_msg}{If \code{TRUE} (default), the logging message is
+guaranteed to have all non-ASCII characters escaped. If \code{FALSE}, the
+characters will be logged as-is. Please note, it is better to ensure
+ASCII, otherwise there might be error while sending the HTTP POST request
+to 'Azure Log Analytics' workspace.}
 
-\item{enforce_tz_utc}{If \code{TRUE}, the logging time field is converted to
-UTC timezone while sending the logging dump to Azure log analytics
-workspace. If \code{FALSE}, then the local time captured by
-\code{Sys.time} is recorded in the time field.}
+\item{enforce_tz_utc}{If \code{TRUE} (default), the logging time field is
+converted to UTC timezone while sending the logging dump to 'Azure Log
+Analytics' workspace. If \code{FALSE}, then the local time captured by
+\code{\link[base]{Sys.time}} is recorded in the time field.}
 }
 \value{
 Returns a generator function typically to be used by
@@ -39,15 +39,8 @@ Returns a generator function typically to be used by
 }
 \description{
 This is an extended function of \code{\link[logger]{layout_json}} function
-from \code{logger} package. Objective is to add additional component in the
-layout of logger in JSON format so that they can also be reported while
+from \code{'logger'} package. Objective is to add additional component in the
+logging layout in JSON format so that they can also be reported while
 logging along with the components collected by
 \code{\link{.add_meta_variables}}.
-}
-\examples{
-\dontrun{
-  logger::log_layout(.layout_json_custom(
-  c("level", "time", "msg", "country"),
-  list(country = "in")))
-}
 }

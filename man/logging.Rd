@@ -39,7 +39,7 @@ logger_trace(...)
 }
 \arguments{
 \item{...}{Content(s) of this argument is directly passed on to
-\code{\link[logger]{log_level}} function of the \code{logger}
+\code{\link[logger]{log_level}} function of the \code{'logger'}
 package.}
 
 \item{log_fields}{Character vector of field names to be included in the JSON.
@@ -50,59 +50,60 @@ to that function's documentation to see which fields are collected.}
 \item{additional_fields}{A named vector of type list with key-value pairs of
 additional meta data which needs to be added in logging context on top of
 \code{log_fields}. The respective value of each key is expected to be of
-length 1.}
+length 1. It is \code{NULL} by default.}
 
-\item{enforce_ascii_msg}{If \code{TRUE}, the logging message is guaranteed to
-have all non-ASCII characters escaped. If \code{FALSE}, the characters
-will be logged as-is. Please note, it is better to ensure ASCII,
-otherwise there might be error while sending the HTTP POST request to
-Azure log analytics workspace.}
+\item{enforce_ascii_msg}{If \code{TRUE} (default), the logging message is
+guaranteed to have all non-ASCII characters escaped. If \code{FALSE}, the
+characters will be logged as-is. Please note, it is better to ensure
+ASCII, otherwise there might be error while sending the HTTP POST request
+to 'Azure Log Analytics' workspace.}
 
-\item{enforce_tz_utc}{If \code{TRUE}, the logging time field is converted to
-UTC timezone while sending the logging dump to Azure log analytics
-workspace. If \code{FALSE}, then the local time captured by
-\code{Sys.time} is recorded in the time field.}
+\item{enforce_tz_utc}{If \code{TRUE} (default), the logging time field is
+converted to UTC timezone while sending the logging dump to 'Azure Log
+Analytics' workspace. If \code{FALSE}, then the local time captured by
+\code{\link[base]{Sys.time}} is recorded in the time field.}
 
-\item{log_to_azure}{If \code{TRUE} then logs will be sent to Azure log
-analytics workspace and console. Else if \code{FALSE} then log will not
-be sent to Azure log analytics workspace, it will only be displayed on
-console, which is the default layout of \code{logger} package.
-Default is set by \code{log_to_azure} key of config yaml file.}
+\item{log_to_azure}{If \code{TRUE} (default), then logs will be sent to
+'Azure Log Analytics' workspace and console. Else if \code{FALSE} then
+logs will not be sent to 'Azure Log Analytics' workspace, it will only be
+displayed on console, which is the default layout of \code{'logger'}
+package.}
 
 \item{log_type}{Single element character vector is expected. Logs will be
-posted to this event on Azure log analytics. For details, check this:
+posted to this event on 'Azure Log Analytics'. For details, check this:
 \url{https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-collector-api?tabs=python/}
 . Default value is \code{"log_from_r"}.}
 
-\item{log_customer_id}{Workspace ID of Azure log analytics workspace. By
+\item{log_customer_id}{Workspace ID of 'Azure Log Analytics' workspace. By
 default it fetches from the environment variable named \code{AZ_LOG_ID}.
 If the environment variable is not set, then a dummy value \code{"abcd"}
 is used. The environment variable's name can be modified by
 \code{\link{set_log_config}}}
 
-\item{log_shared_key}{Shared key of Azure log analytics workspace. By default
-it fetches from the environment variable named \code{AZ_LOG_KEY}. If the
-environment variable is not set, then a dummy value \code{"abcd"} is
-used. The environment variable's name can be modified by
+\item{log_shared_key}{Shared key of 'Azure Log Analytics' workspace. By
+default it fetches from the environment variable named \code{AZ_LOG_KEY}.
+If the environment variable is not set, then a dummy value \code{"abcd"}
+is used. The environment variable's name can be modified by
 \code{\link{set_log_config}}}
 }
 \value{
 If \code{log_to_azure} is \code{FALSE} then log output is shown on
 console. Else, if \code{TRUE}, then log output is shown on console, as
-well as posted to Azure log analytics workspace under the custom table
+well as posted to 'Azure Log Analytics' workspace under the custom table
 name as specified by \code{log_type} argument. If POST request is
 unsuccessful, then additional warning message is thrown with POST request
-response.
+response. If POST request is successful, then it invisibly returns the
+\code{\link[httr]{POST}} object.
 }
 \description{
 Logger function defined which are created on top of
 \code{\link[logger]{log_level}} and \code{\link[logger]{layout_json}} -
-these are part of another package \code{logger}. Additional
+these are part of another package \code{'logger'}. Additional
 capabilities have been added to those functions which enables this function
-to be able to send logs directly to the Azure log analytics workspace, and
+to be able to send logs directly to the 'Azure Log Analytics' workspace, and
 also have control to post log outputs into the console - as per user input.
 Note that, logging threshold can be directly set (if needed) using
-\code{\link[logger]{log_threshold}} function from \code{logger} package.
+\code{\link[logger]{log_threshold}} function from \code{'logger'} package.
 }
 \details{
 \itemize{
@@ -111,16 +112,17 @@ is read from the output of \code{\link{get_log_config}}. The idea is
 to run the \code{\link{set_log_config}} function once to define the
 default arguments; and use them automatically while logging anything
 without the need of specifying them every time it is triggered.
-\item Azure log analytics workspace id and shared key are intentionally
+\item 'Azure Log Analytics' workspace id and shared key are intentionally
 fetched from environment variables for security purpose. It is not
 a good practice to specify them explicitly. Using environment variable
 is one easy approach to potentially hide it from unintentional user.
 }
 }
 \note{
-Logging layout is set in JSON format, required to send to AZ log
-analytics. Note that this layout modifies the global \code{namespace} of
-logger package by default - that is not important for this use case.
+Logging layout is set in JSON format, required to send to 'Azure Log
+Analytics'. Note that this layout modifies the global \code{namespace} of
+\code{'logger'} package by default - that is not important for this use
+case.
 
 \code{logger_info} is a wrapper function around
 \code{\link{logger_level}} - logging level is set as
@@ -151,43 +153,43 @@ logger package by default - that is not important for this use case.
 \code{\link[logger]{TRACE}} by default.
 }
 \examples{
-\dontrun{
-# Define logging config and then use logger
+# Define logging config and then use logger_* functions to log
 set_log_config(log_to_azure = FALSE)
 logger_level(logger::INFO, "logging message")
-# Specify arguments explicitly inside the logger
+# Specify other arguments explicitly inside the logger_level function
 logger_level(logger::INFO, "logging message", log_to_azure = FALSE)
-}
 
-\dontrun{
+# For ease, use wrapper functions instead of using `logger_level` function as
+# below
 logger_info("logging message info", log_to_azure = FALSE)
-}
 
-\dontrun{
-logger_error("logging message error", log_to_azure = FALSE)
-}
+# Also, instead of writing `log_to_azure = FALSE` every time, set the
+# configuration in one step using `set_log_config`, and continue to use
+# wrapper functions as usual.
+set_log_config(log_to_azure = FALSE)
+logger_info("logging message info")
 
-\dontrun{
-logger_warn("logging message warn", log_to_azure = FALSE)
-}
+# Wrapper function for log level 'error'
+logger_error("logging message error")
 
-\dontrun{
+# Wrapper function for log level 'warn'
+logger_warn("logging message warn")
+
+# Change log threshold to debug
 logger::log_threshold(logger::DEBUG)
-logger_debug("logging message debug", log_to_azure = FALSE)
-}
+# Wrapper function for log level 'debug'
+logger_debug("logging message debug")
 
-\dontrun{
-logger_fatal("logging message fatal", log_to_azure = FALSE)
-}
+# Wrapper function for log level 'fatal'
+logger_fatal("logging message fatal")
 
-\dontrun{
-logger_success("logging message success", log_to_azure = FALSE)
-}
+# Wrapper function for log level 'success'
+logger_success("logging message success")
 
-\dontrun{
+# Change logging threshold
 logger::log_threshold(logger::TRACE)
-logger_trace("logging message trace", log_to_azure = FALSE)
-}
+# Wrapper function for log level 'trace'
+logger_trace("logging message trace")
 
 }
 \concept{logging functions}
