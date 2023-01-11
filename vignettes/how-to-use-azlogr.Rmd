@@ -98,7 +98,7 @@ logger_info("log information")
 
 # Example use case
 
-Below is an example workflow of configuring the options and using `logger_*` functions to log.
+Below is an example workflow of configuring the logging mechanism and using `logger_*` functions to log.
 
 ```{r example, eval = FALSE}
 # Azure Log Analytics workspace id and shared key are fetched
