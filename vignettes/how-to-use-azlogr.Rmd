@@ -101,7 +101,7 @@ logger_info("log information")
 Below is an example workflow of configuring the options and using `logger_*` functions to log.
 
 ```{r example, eval = FALSE}
-# Azure Log Analytics workspace id and shared key are fethced
+# Azure Log Analytics workspace id and shared key are fetched
 # from environment variables.
 Sys.setenv(AZ_LOG_ID = "<enter-your-Azure-Log-Analytics-workspace-id>")
 Sys.setenv(AZ_LOG_KEY = "<enter-your-Azure-Log-Analytics-shared-key>")
