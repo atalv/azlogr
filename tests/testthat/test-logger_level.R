@@ -47,26 +47,26 @@ test_that("additional field works", {
   set_log_config()
 })
 test_that("enforce ascii works", {
-  set_log_config(enforce_ascii = TRUE)
   non_ascii_raw <- raw(2)
   non_ascii_raw[1] <- as.raw(0xc5)
   non_ascii_raw[2] <- as.raw(0xbb)
+  set_log_config(enforce_ascii = TRUE)
   expect_match(
     capture.output(
-      logger_info(paste0("logging non-ascii ", rawToChar(non_ascii_raw)),
+      logger_info(rawToChar(non_ascii_raw),
                   log_to_azure = FALSE),
       type = "message"
     ),
-    "logging non-ascii <U\\+017B>"
+    "\\u017b"
   )
   set_log_config(enforce_ascii = FALSE)
   expect_match(
     capture.output(
-      logger_info(paste0("logging non-ascii ", rawToChar(non_ascii_raw)),
+      logger_info(rawToChar(non_ascii_raw),
                   log_to_azure = FALSE),
       type = "message"
     ),
-    paste0("logging non-ascii ", rawToChar(non_ascii_raw))
+    rawToChar(non_ascii_raw)
   )
   set_log_config()
 })
