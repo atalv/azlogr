@@ -1,5 +1,6 @@
 # azlogr 0.0.4
 
+* Bug fix - not trying to post to 'Azure Log Analytics' workspace when logging level does not meet the logging threshold criteria. Earlier it was posting an empty string in that scenario, that is fixed. 
 * Minor documentation update.
 
 # azlogr 0.0.3

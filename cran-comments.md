@@ -1,5 +1,12 @@
 ## Resubmission
-This is a resubmission.
+This is a resubmission version 0.0.4:
+
+* Fixed non-ASCII failure in test script in r-old-rel-Windows by using rawToChar and raw vectors instead.
+
+* Also, made some bug fix and documentation update.
+
+## Resubmission
+This is a resubmission version 0.0.3:
 
 * Omitted the examples of unexported functions.
 
