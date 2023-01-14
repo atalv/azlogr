@@ -58,7 +58,7 @@ test_that("enforce ascii works", {
                   log_to_azure = FALSE),
       type = "message"
     ),
-    "non-ASCII forced to ASCII (<U\\+017B>)|(<U\\+00C5><U\\+00BB>)"
+    "non-ASCII forced to ASCII <U\\+017B>"
   )
   set_log_config(enforce_ascii = FALSE)
   expect_match(

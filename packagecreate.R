@@ -144,3 +144,5 @@ usethis::use_package("jsonlite", type = "Imports", min_version = NULL)
 # ---------------------------------------------------------------------------------------------------------
 # unloadNamespace("azlogr")
 # remove.packages("azlogr")
+# Sys.setlocale(locale = "English_United States.1252"), Sys.setlocale(locale = "English_United States.utf8")
+# 1252 is Latin -> Z phutki changed to c5 bb after iconv if enc2utf8 is also there! if not, then remains u017b!
