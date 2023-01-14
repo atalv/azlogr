@@ -53,20 +53,21 @@ test_that("enforce ascii works", {
   set_log_config(enforce_ascii = TRUE)
   expect_match(
     capture.output(
-      logger_info(rawToChar(non_ascii_raw),
+      logger_info(paste0("non-ASCII forced to ASCII ",
+                         rawToChar(non_ascii_raw)),
                   log_to_azure = FALSE),
       type = "message"
     ),
-    "\\u017b"
+    "non-ASCII forced to ASCII <U\\+017B>"
   )
   set_log_config(enforce_ascii = FALSE)
   expect_match(
     capture.output(
-      logger_info(rawToChar(non_ascii_raw),
+      logger_info(paste0("non-ASCII as-is ", rawToChar(non_ascii_raw)),
                   log_to_azure = FALSE),
       type = "message"
     ),
-    rawToChar(non_ascii_raw)
+    paste0("non-ASCII as-is ", rawToChar(non_ascii_raw))
   )
   set_log_config()
 })

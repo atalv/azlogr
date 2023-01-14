@@ -34,6 +34,7 @@ devtools::unload()
 # devtools::build()
 devtools::spell_check()
 devtools::release()
+# https://win-builder.r-project.org/ - check for devel, oldrelease
 
 # R CMD build
 # R CMD check --as-cran
