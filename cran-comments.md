@@ -1,7 +1,7 @@
 ## Resubmission
 This is a resubmission version 0.0.4:
 
-* Fixed non-ASCII failure in test script in r-old-rel-Windows by using rawToChar and raw vectors instead.
+* Fixed non-ASCII failure in test script in flavor `r-oldrel-windows-ix86+x86_64`.
 
 * Also, made some bug fix and documentation update.
 
