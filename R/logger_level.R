@@ -170,7 +170,7 @@
     }
     sapply(msg, function(msg) {
       if (enforce_ascii_msg) {
-        msg <- iconv(msg, from = "UTF-8",
+        msg <- iconv(enc2native(msg), from = "UTF-8",
                      to = "ASCII", sub = "Unicode")
       }
       jsonlite::toJSON(
