@@ -42,7 +42,7 @@ install.packages("azlogr")
 ```
 
 Or, install the latest development version of `azlogr` from
-[GitHub](https://github.com/atalv/azlogr/) with:
+[GitHub](https://github.com/) with:
 
 ``` r
 install.packages("devtools")

@@ -37,7 +37,7 @@ You can install the latest version of `azlogr` as published on [CRAN](https://cr
 install.packages("azlogr")
 ```
 
-Or, install the latest development version of `azlogr` from [GitHub](https://github.com/atalv/azlogr/) with:
+Or, install the latest development version of `azlogr` from [GitHub](https://github.com/) with:
 
 ```{r install_dev, eval = FALSE}
 install.packages("devtools")

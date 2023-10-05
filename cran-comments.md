@@ -1,4 +1,9 @@
 ## Resubmission
+This is a resubmission version 0.0.5:
+
+* Slightly modified testing strategy for enforcing ASCII because of different implementation of `base::iconv` by OS type, particularly in `r-devel-M1mac`.
+
+## Resubmission
 This is a resubmission version 0.0.4:
 
 * Fixed non-ASCII failure in test script in flavor `r-oldrel-windows-ix86+x86_64`.

@@ -35,6 +35,7 @@ devtools::unload()
 devtools::spell_check()
 devtools::release()
 # https://win-builder.r-project.org/ - check for devel, oldrelease
+# https://mac.r-project.org/macbuilder/submit.html - check for mac
 
 # R CMD build
 # R CMD check --as-cran
@@ -104,7 +105,8 @@ lintr::lint_package(
     cyclocomp_linter = lintr::cyclocomp_linter(15),
     object_name_linter = lintr::object_name_linter(c('snake_case'
                                                      # , 'camelCase'
-                                                     ))
+                                                     )),
+    object_usage_linter = NULL
   ),
   # exclude = 'logger_',
   exclusions = list.files(path='R/', pattern = 'hello_', full.names = TRUE)
