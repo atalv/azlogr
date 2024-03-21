@@ -1,4 +1,9 @@
 ## Resubmission
+This is a resubmission version 0.0.6:
+
+* Updated testing strategy as required by an upcoming change on the dependent package `logger`.
+
+## Resubmission
 This is a resubmission version 0.0.5:
 
 * Slightly modified testing strategy for enforcing ASCII because of different implementation of `base::iconv` by OS type, particularly in `r-devel-M1mac`.
